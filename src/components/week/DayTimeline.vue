@@ -1,12 +1,12 @@
 <template>
   <div class="day-timeline">
     <div
-      v-for="hour in timelineHours"
+      v-for="hour in ccmsTimelineHours"
       :key="hour"
       class="day-timeline__hour"
     >
       <span class="day-timeline__hour-text">
-        {{ getLocaleTimeString(hour) }}
+        {{ hour }}
       </span>
     </div>
   </div>
@@ -38,6 +38,9 @@ export default defineComponent({
         1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300,
       ] as DAY_TIME_POINT[],
       timelineHours: [] as DAY_TIME_POINT[],
+      ccmsTimelineHours: [
+        "10-13", "13-17", "17-20",
+      ] as string[]
     };
   },
 
@@ -70,23 +73,15 @@ export default defineComponent({
   justify-content: space-evenly;
 
   &__hour {
-    padding-left: 4px;
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
     height: 100%;
-    font-size: clamp(10px, 0.625rem, 14px);
     color: var(--qalendar-gray-quite-dark);
 
     &-text {
       line-height: 0;
-      transform: translate(-40px, 0);
-    }
-
-    &:first-child {
-      .day-timeline__hour-text {
-        display: none;
-      }
+      transform: translate(-40px, 20px);
     }
 
     &:not(:last-child) {
